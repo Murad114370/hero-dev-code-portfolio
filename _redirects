@@ -1,0 +1,6 @@
+# Netlify redirects and clean URLs
+/projects /index.html#projects 301
+/contact /index.html#contact 301
+/skills /index.html#skills 301
+/about /index.html#about 301
+/resume /assets/docs/resume.pdf 302

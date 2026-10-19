@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Details | Muradul Islam</title>
+    <meta
+      name="description"
+      content="Comprehensive breakdown, architecture, challenges, and future roadmap of projects engineered by Muradul Islam."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <style>
+      .detail-page-wrapper {
+        padding: 130px 0 80px;
+        min-height: 80vh;
+      }
+      .back-nav-btn {
+        margin-bottom: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .detail-header-card {
+        padding: 40px;
+        margin-bottom: 40px;
+      }
+      .detail-img-banner {
+        width: 100%;
+        max-height: 480px;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+        margin-bottom: 32px;
+        border: 1px solid var(--border-card);
+      }
+      .detail-split-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 36px;
+      }
+      @media (max-width: 900px) {
+        .detail-split-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header id="navbar" class="navbar scrolled">
+      <div class="container navbar-container">
+        <a href="index.html" class="navbar-brand">
+          <span class="brand-badge">&lt;MI /&gt;</span>
+          <span>Muradul<span class="brand-dot">.</span></span>
+        </a>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">☀️</button>
+          <a href="index.html#projects" class="btn btn-secondary btn-sm">← Back to Portfolio</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="detail-page-wrapper container">
+      <a href="index.html#projects" class="btn btn-secondary back-nav-btn">← Back to All Projects</a>
+
+      <article id="project-detail-content" class="glass-card detail-header-card">
+        <img id="detail-img" src="./assets/images/project-doctoriano.png" alt="Project Banner" class="detail-img-banner" />
+
+        <div class="detail-split-grid">
+          <div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px">
+              <span id="detail-category" class="badge badge-cyan">Full-Stack Platform</span>
+              <span id="detail-duration" style="font-size: 0.85rem; color: var(--text-muted)"></span>
+            </div>
+            <h1 id="detail-title" class="section-title" style="margin-bottom: 8px">Project Title</h1>
+            <p id="detail-subtitle" style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 24px"></p>
+
+            <section class="modal-section">
+              <h3 class="modal-section-title"><span>01.</span> Project Overview</h3>
+              <p id="detail-overview" class="modal-overview-text"></p>
+            </section>
+
+            <section class="modal-section">
+              <h3 class="modal-section-title"><span>02.</span> Problem Statement</h3>
+              <p id="detail-problem" class="modal-overview-text"></p>
+            </section>
+
+            <section class="modal-section">
+              <h3 class="modal-section-title"><span>03.</span> Key Technical Challenges & Solutions</h3>
+              <div id="detail-challenges" class="challenges-list"></div>
+            </section>
+
+            <section class="modal-section">
+              <h3 class="modal-section-title"><span>04.</span> Future Development Roadmap</h3>
+              <div id="detail-roadmap" class="roadmap-list"></div>
+            </section>
+          </div>
+
+          <!-- Sidebar Meta -->
+          <div>
+            <div class="glass-card" style="padding: 24px; position: sticky; top: 110px">
+              <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px">Tech Stack Breakdown</h4>
+              <div id="detail-tech-tags" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px"></div>
+
+              <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px">Key Highlights</h4>
+              <ul id="detail-features" class="exp-duties" style="margin-bottom: 28px"></ul>
+
+              <div style="display: flex; flex-direction: column; gap: 12px">
+                <a id="detail-live-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%">
+                  Live Preview ↗
+                </a>
+                <a id="detail-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%">
+                  GitHub Repository ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer" style="padding-top: 30px">
+      <div class="container footer-bottom">
+        <p class="footer-copy">© <span id="current-year">2026</span> Muradul Islam. Built with passion & clean code.</p>
+        <a href="index.html" class="btn btn-secondary btn-sm">Home</a>
+      </div>
+    </footer>
+
+    <script src="./js/projects-data.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Theme Toggle
+        const themeBtn = document.getElementById("theme-toggle");
+        const html = document.documentElement;
+        const saved = localStorage.getItem("portfolio-theme") || "dark";
+        html.setAttribute("data-theme", saved);
+        if (themeBtn) themeBtn.textContent = saved === "light" ? "🌙" : "☀️";
+
+        if (themeBtn) {
+          themeBtn.addEventListener("click", () => {
+            const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            html.setAttribute("data-theme", next);
+            localStorage.setItem("portfolio-theme", next);
+            themeBtn.textContent = next === "light" ? "🌙" : "☀️";
+          });
+        }
+
+        // Get project ID from query param
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get("id") || "doctoriano";
+        const project = getProjectById(projectId) || projectsData[0];
+
+        if (project) {
+          document.title = `${project.title} | Muradul Islam Case Study`;
+          document.getElementById("detail-img").src = project.image;
+          document.getElementById("detail-title").textContent = project.title;
+          document.getElementById("detail-subtitle").textContent = project.subtitle;
+          document.getElementById("detail-duration").textContent = project.duration;
+          document.getElementById("detail-category").textContent =
+            project.category === "fullstack" ? "Full Stack Application" : "Frontend Architecture";
+          document.getElementById("detail-overview").textContent = project.overview;
+          document.getElementById("detail-problem").textContent = project.problemStatement;
+
+          document.getElementById("detail-live-btn").href = project.demoUrl;
+          document.getElementById("detail-github-btn").href = project.githubUrl;
+
+          // Tags
+          document.getElementById("detail-tech-tags").innerHTML = project.tags
+            .map((t) => `<span class="badge">${t}</span>`)
+            .join("");
+
+          // Features
+          document.getElementById("detail-features").innerHTML = project.features
+            .map((f) => `<li>${f}</li>`)
+            .join("");
+
+          // Challenges
+          document.getElementById("detail-challenges").innerHTML = project.challenges
+            .map(
+              (c) => `
+              <div class="challenge-box">
+                <h5 class="challenge-title">⚠️ Challenge: ${c.title}</h5>
+                <p class="challenge-desc">${c.description}</p>
+                <div class="solution-box"><strong>💡 Solution:</strong> ${c.solution}</div>
+              </div>
+            `
+            )
+            .join("");
+
+          // Roadmap
+          document.getElementById("detail-roadmap").innerHTML = project.roadmap
+            .map((r) => `<div class="roadmap-item">${r}</div>`)
+            .join("");
+        }
+      });
+    </script>
+  </body>
+</html>
